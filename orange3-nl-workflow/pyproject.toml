@@ -1,0 +1,38 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "orange3-nl-workflow"
+version = "0.1.0"
+description = "Natural-language Orange Canvas workflow builder add-on."
+readme = "README.md"
+requires-python = ">=3.10"
+authors = [{ name = "Portakal Project" }]
+dependencies = [
+  "Orange3>=3.36",
+]
+
+[project.optional-dependencies]
+openai = ["openai>=1.0"]
+test = ["pytest>=8"]
+
+[project.scripts]
+orange-nl-workflow = "orangecontrib.nlworkflow.cli:main"
+
+[project.entry-points."orange.widgets"]
+"Prompt Workflow" = "orangecontrib.nlworkflow.widgets"
+
+[project.entry-points."orange3.addon"]
+"orange3-nl-workflow" = "orangecontrib.nlworkflow"
+
+[project.entry-points."orange.addons"]
+"orange3-nl-workflow" = "orangecontrib.nlworkflow"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["orangecontrib.nlworkflow*"]
+namespaces = true
+
+[tool.setuptools.package-data]
+"orangecontrib.nlworkflow.widgets" = ["icons/*.svg"]

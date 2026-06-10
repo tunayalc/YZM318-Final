@@ -1,0 +1,13 @@
+diff --git a/Orange/canvas/run.py b/Orange/canvas/run.py
+index b80724019..d63100639 100644
+--- a/Orange/canvas/run.py
++++ b/Orange/canvas/run.py
+@@ -88,7 +88,7 @@ def main(argv=None):
+             app.exit()
+     sigprop.finished.connect(on_finished)
+ 
+-    rval = app.exec_()
++    rval = getattr(app, "exec", getattr(app, "exec_", None))()
+     model.clear()
+     # Notify the workflow model to 'close'.
+     QApplication.sendEvent(model, QEvent(QEvent.Close))
